@@ -1,0 +1,41 @@
+pipeline
+   {
+    agent any
+    stages
+    {
+
+        stage('Git-checkout')
+        {
+            steps 
+            {
+               git url:'https://github.com/meghana2607/calculator.git'
+               echo"checkout successful";
+               }
+        }
+        stage('Compile') 
+        {
+            steps 
+            {
+                bat label:'',script:'mvnw compile'
+                echo "Test succesful";
+            }
+        }
+        stage('Build') 
+        {
+            steps 
+            {
+            bat label: '',script:'mvnw clean'
+            bat label:'',script:'mvnw package'
+                echo "build succesful";
+             }
+          } 
+           stage('Test') 
+        {
+            steps 
+            {
+            bat label:'',script:'mvnw test'
+                echo "test succesful";
+             }
+          }   
+       }
+ }
