@@ -25,7 +25,6 @@ pipeline
             steps 
             {
             bat label: '',script:'mvnw clean'
-            bat label:'',script:'mvnw package'
                 echo "build succesful";
              }
           } 
