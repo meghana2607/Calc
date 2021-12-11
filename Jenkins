@@ -1,9 +1,6 @@
 pipeline
    {
     agent any
-    triggers {
-          pollSCM('* * * * *')
-     }
     stages
     {
 
@@ -11,7 +8,7 @@ pipeline
         {
             steps 
             {
-               git url:'https://github.com/meghana2607/Calc.git'
+               git url:'https://github.com/meghana2607/Calc.git/'
                echo"checkout successful";
                }
         }
@@ -19,7 +16,7 @@ pipeline
         {
             steps 
             {
-                sh"./gradlew compileJava"
+                bat label:'',script:'mvn compile'
                 echo "Test succesful";
             }
         }
@@ -27,8 +24,7 @@ pipeline
         {
             steps 
             {
-                
-                sh"./gradlew buid"
+            bat label: '',script:'mvn clean'
                 echo "build succesful";
              }
           } 
@@ -36,9 +32,8 @@ pipeline
         {
             steps 
             {
-             sh"./gradlew TestJava"
+            bat label:'',script:'mvn test'
                 echo "test succesful";
              }
           }   
        }
- }
